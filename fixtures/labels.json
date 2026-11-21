@@ -1,0 +1,247 @@
+{
+  "sample": true,
+  "notes": "All four videos are SAMPLE synthetic screen recordings with local TTS narration. They are not recordings of real people, clients, or work. No live model was used to produce these fixtures. spoken_at_s values are measured from each case's timeline.json after TTS mux. evidence_window_s values are measured from the deterministic animation timeline in build/generate_videos.py. duration_s is measured with ffprobe on the final mp4. Node states use the directive names: unverified | evidence_pending | supported | insufficient_evidence | contradicted. Engineering's my-player folder had no fixture format at handoff time, so this schema was written to match the team brief.",
+  "node_states": [
+    "unverified",
+    "evidence_pending",
+    "supported",
+    "insufficient_evidence",
+    "contradicted"
+  ],
+  "cases": [
+    {
+      "id": "case1-clear-pass",
+      "file": "case1-clear-pass.mp4",
+      "duration_s": 40.0,
+      "sample": true,
+      "case_type": "clear_pass",
+      "expected_outcome": "supported",
+      "transcript": "This is a sample recording, not a real person or client. I can write a spreadsheet formula that totals a column. I click the total cell, type equals SUM of B2 through B6, and press Enter. The total is one thousand four hundred twenty dollars. The formula and the result are both on screen.",
+      "narration_lines": [
+        {
+          "i": 1,
+          "speaker": "A",
+          "start": 0.8,
+          "end": 4.176,
+          "text": "This is a sample recording, not a real person or client."
+        },
+        {
+          "i": 2,
+          "speaker": "A",
+          "start": 4.626,
+          "end": 7.596,
+          "text": "I can write a spreadsheet formula that totals a column."
+        },
+        {
+          "i": 3,
+          "speaker": "A",
+          "start": 8.046,
+          "end": 13.4,
+          "text": "I click the total cell, type equals SUM of B2 through B6, and press Enter."
+        },
+        {
+          "i": 4,
+          "speaker": "A",
+          "start": 14.0,
+          "end": 19.858,
+          "text": "The total is one thousand four hundred twenty dollars. The formula and the result are both on screen."
+        }
+      ],
+      "claims": [
+        {
+          "claim": "I can write a spreadsheet formula that totals a column.",
+          "spoken_at_s": 4.626,
+          "shown_on_screen": true,
+          "evidence_window_s": [
+            12.5,
+            40.0
+          ],
+          "expected_state": "supported",
+          "notes": "The narrator clicks cell B7 at 4.00s, types =SUM(B2:B6) from 5.00s to 11.67s, and presses Enter at 12.50s. From 12.50s to the end, the formula bar shows =SUM(B2:B6) and cell B7 shows the result 1,420.00 (200+350+180+420+270)."
+        }
+      ],
+      "notes": "Clear pass: one claimed skill, shown end to end, with the completed formula and total visible together."
+    },
+    {
+      "id": "case2-unsupported-claim",
+      "file": "case2-unsupported-claim.mp4",
+      "duration_s": 40.0,
+      "sample": true,
+      "case_type": "unsupported_claim",
+      "expected_outcome": "insufficient_evidence",
+      "transcript": "This is a sample recording, not a real person or client. I can fill out a job entry form, end to end. I enter the client name, the job date, the hours, and the rate. Then I click submit. The saved confirmation is on the screen. I also wrote the SQL query that powers this.",
+      "narration_lines": [
+        {
+          "i": 1,
+          "speaker": "A",
+          "start": 0.8,
+          "end": 4.176,
+          "text": "This is a sample recording, not a real person or client."
+        },
+        {
+          "i": 2,
+          "speaker": "A",
+          "start": 4.626,
+          "end": 7.335,
+          "text": "I can fill out a job entry form, end to end."
+        },
+        {
+          "i": 3,
+          "speaker": "A",
+          "start": 7.785,
+          "end": 11.326,
+          "text": "I enter the client name, the job date, the hours, and the rate."
+        },
+        {
+          "i": 4,
+          "speaker": "A",
+          "start": 19.2,
+          "end": 20.441,
+          "text": "Then I click submit."
+        },
+        {
+          "i": 5,
+          "speaker": "A",
+          "start": 21.0,
+          "end": 23.252,
+          "text": "The saved confirmation is on the screen."
+        },
+        {
+          "i": 6,
+          "speaker": "A",
+          "start": 26.0,
+          "end": 28.811,
+          "text": "I also wrote the SQL query that powers this."
+        }
+      ],
+      "claims": [
+        {
+          "claim": "I can fill out a job entry form, end to end.",
+          "spoken_at_s": 4.626,
+          "shown_on_screen": true,
+          "evidence_window_s": [
+            20.0,
+            40.0
+          ],
+          "expected_state": "supported",
+          "notes": "Client, date, hours, and rate are typed on screen; Submit is clicked at 19.60s. From 20.00s the confirmation 'Job J-1042 saved' is visible with the entered values. The line 'Then I click submit.' is spoken at 19.20\u201320.44s, timed to that click."
+        },
+        {
+          "claim": "I also wrote the SQL query that powers this.",
+          "spoken_at_s": 26.0,
+          "shown_on_screen": false,
+          "evidence_window_s": null,
+          "expected_state": "insufficient_evidence",
+          "notes": "Signature refusal moment: this skill is said aloud at 26.00\u201328.81s while the confirmation screen remains on camera. No SQL, query, or code ever appears in any frame."
+        }
+      ],
+      "notes": "Unsupported-claim case (the signature demo moment). The form-filling claim should unlock as supported. The SQL claim should stay locked at insufficient_evidence, because it is only said aloud and never shown. This is not contradicted: the video never shows contrary evidence, it simply never shows the skill."
+    },
+    {
+      "id": "case3-partial-completion",
+      "file": "case3-partial-completion.mp4",
+      "duration_s": 40.0,
+      "sample": true,
+      "case_type": "partial_completion",
+      "expected_outcome": "insufficient_evidence",
+      "transcript": "This is a sample recording, not a real person or client. I can complete a client intake form. I type the client name, and I type the job date. I stop there. I do not enter the hours, and I never click submit.",
+      "narration_lines": [
+        {
+          "i": 1,
+          "speaker": "A",
+          "start": 0.8,
+          "end": 4.176,
+          "text": "This is a sample recording, not a real person or client."
+        },
+        {
+          "i": 2,
+          "speaker": "A",
+          "start": 4.626,
+          "end": 6.63,
+          "text": "I can complete a client intake form."
+        },
+        {
+          "i": 3,
+          "speaker": "A",
+          "start": 7.08,
+          "end": 10.003,
+          "text": "I type the client name, and I type the job date."
+        },
+        {
+          "i": 4,
+          "speaker": "A",
+          "start": 16.0,
+          "end": 19.754,
+          "text": "I stop there. I do not enter the hours, and I never click submit."
+        }
+      ],
+      "claims": [
+        {
+          "claim": "I can complete a client intake form.",
+          "spoken_at_s": 4.626,
+          "shown_on_screen": false,
+          "evidence_window_s": [
+            11.4,
+            40.0
+          ],
+          "expected_state": "insufficient_evidence",
+          "notes": "Two of three required fields are filled: Client name 'Cedar Hill SAMPLE' is complete at 6.90s, Job date '2026-11-18' is complete at 11.40s. Hours stays empty for the whole video. The cursor hovers near Hours (16\u201318s) and Submit (20\u201322.5s) but never clicks. The on-screen status reads 'Draft \u2014 not submitted' and '2 of 3 required fields complete'. evidence_window_s is the span where that incomplete end state is fully visible. Completion of the claimed skill is never shown."
+        }
+      ],
+      "notes": "Partial completion: the task is started on screen (2 of 3 steps) but never finished or submitted."
+    },
+    {
+      "id": "case4-unseen-holdout",
+      "file": "case4-unseen-holdout.mp4",
+      "duration_s": 40.0,
+      "sample": true,
+      "case_type": "unseen_holdout",
+      "expected_outcome": "supported",
+      "claims": [
+        {
+          "claim": "I can style a preview box with CSS.",
+          "spoken_at_s": 4.626,
+          "shown_on_screen": true,
+          "evidence_window_s": [
+            25.17,
+            40.0
+          ],
+          "expected_state": "supported",
+          "notes": "Different domain and layout from cases 1\u20133 (dark CSS playground with a live preview, not a form or spreadsheet). Four properties are typed and applied: background #40ddf2, border-radius 24px, padding 32px, color #0c1018. The last property finishes at 25.17s. From then to the end the editor shows the complete rule and the preview shows a rounded cyan 'SAMPLE box' with all four rules applied (on-screen counter: Applied rules: 4 of 4)."
+        }
+      ],
+      "transcript": "This is a sample recording, not a real person or client. I can style a preview box with CSS. I type a background color, a border radius, and padding in the editor. The preview updates on the right. The finished style is on the screen.",
+      "narration_lines": [
+        {
+          "i": 1,
+          "speaker": "A",
+          "start": 0.8,
+          "end": 4.176,
+          "text": "This is a sample recording, not a real person or client."
+        },
+        {
+          "i": 2,
+          "speaker": "A",
+          "start": 4.626,
+          "end": 6.862,
+          "text": "I can style a preview box with CSS."
+        },
+        {
+          "i": 3,
+          "speaker": "A",
+          "start": 7.312,
+          "end": 11.319,
+          "text": "I type a background color, a border radius, and padding in the editor."
+        },
+        {
+          "i": 4,
+          "speaker": "A",
+          "start": 27.0,
+          "end": 30.576,
+          "text": "The preview updates on the right. The finished style is on the screen."
+        }
+      ],
+      "notes": "Unseen holdout: a fully shown skill in a domain and layout that does not appear in the other three cases. If the pipeline generalizes, the node should be supported."
+    }
+  ]
+}
