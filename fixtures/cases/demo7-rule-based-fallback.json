@@ -1,0 +1,92 @@
+{
+  "id": "demo7-rule-based-fallback",
+  "title": "State demo: Decisions API unavailable, rule-based fallback (SAMPLE)",
+  "video": "case1-clear-pass.mp4",
+  "benchmark": false,
+  "expected": {
+    "c1": "supported"
+  },
+  "expected_source": "Engineering fallback demo on Delivery's case1 video (not a benchmark case)",
+  "claims": [
+    {
+      "id": "c1",
+      "text": "I can write a spreadsheet formula that totals a column."
+    }
+  ],
+  "sample_notice": "HAND-AUTHORED SAMPLE fixture, written by Engineering from Delivery's labels.json (timestamps from labels). NOT model output. Not a live model run. Probabilities/confidences are illustrative placeholders, not measurements. Simulates the Decisions API being unavailable: Stage 3 uses the deterministic rule-based fallback (values computed by the same rule as ruleBasedRubric in gate.ts).",
+  "transcript": "This is a sample recording, not a real person or client. I can write a spreadsheet formula that totals a column. I click the total cell, type equals SUM of B2 through B6, and press Enter. The total is one thousand four hundred twenty dollars. The formula and the result are both on screen.",
+  "stages": {
+    "extractor": {
+      "ok": true,
+      "data": {
+        "observations": [
+          {
+            "t_start": 4.0,
+            "t_end": 12.5,
+            "description": "Clicks cell B7 and types =SUM(B2:B6) in the formula bar.",
+            "modality": "shown_on_screen",
+            "claim_ids": [
+              "c1"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "t_start": 12.5,
+            "t_end": 40.0,
+            "description": "After Enter, formula bar shows =SUM(B2:B6) and B7 shows 1,420.00.",
+            "modality": "shown_on_screen",
+            "claim_ids": [
+              "c1"
+            ],
+            "confidence": 0.93
+          },
+          {
+            "t_start": 4.626,
+            "t_end": 7.596,
+            "description": "Says 'I can write a spreadsheet formula that totals a column.'",
+            "modality": "only_said_aloud",
+            "claim_ids": [
+              "c1"
+            ],
+            "confidence": 0.97
+          }
+        ],
+        "summary": "SAMPLE: a SUM formula is typed and its total is visible on screen."
+      }
+    },
+    "challenger": {
+      "ok": true,
+      "data": {
+        "per_claim": [
+          {
+            "claim_id": "c1",
+            "contradictions": [],
+            "unsupported": false,
+            "missing_visual_proof": [],
+            "uncertainty": "Single simple formula; harder spreadsheet work not shown."
+          }
+        ],
+        "overall_notes": "SAMPLE: a SUM formula is typed and its total is visible on screen."
+      }
+    },
+    "rubric": {
+      "ok": true,
+      "data": {
+        "source": "rule_based_fallback",
+        "fallback_reason": "SAMPLE scenario: decisions.create failed (simulated error: 503 Service Unavailable). No real API call was made.",
+        "per_claim": [
+          {
+            "claim_id": "c1",
+            "answer": "yes",
+            "probability": 0.92
+          }
+        ],
+        "rubric": {
+          "problem_discovery": 1,
+          "technical_communication": 1,
+          "workflow_execution": 1
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "id": "case4-unseen-holdout",
+  "title": "Unseen Holdout (SAMPLE)",
+  "video": "case4-unseen-holdout.mp4",
+  "benchmark": true,
+  "expected": {
+    "c1": "supported"
+  },
+  "expected_source": "Delivery labels.json (ground truth)",
+  "claims": [
+    {
+      "id": "c1",
+      "text": "I can style a preview box with CSS."
+    }
+  ],
+  "sample_notice": "HAND-AUTHORED SAMPLE fixture, written by Engineering from Delivery's labels.json (timestamps from labels). NOT model output. Not a live model run. Probabilities/confidences are illustrative placeholders, not measurements.",
+  "transcript": "This is a sample recording, not a real person or client. I can style a preview box with CSS. I type a background color, a border radius, and padding in the editor. The preview updates on the right. The finished style is on the screen.",
+  "stages": {
+    "extractor": {
+      "ok": true,
+      "data": {
+        "observations": [
+          {
+            "t_start": 7.312,
+            "t_end": 25.17,
+            "description": "Types background #40ddf2, border-radius 24px, padding 32px, color #0c1018 in the CSS editor.",
+            "modality": "shown_on_screen",
+            "claim_ids": [
+              "c1"
+            ],
+            "confidence": 0.89
+          },
+          {
+            "t_start": 25.17,
+            "t_end": 40.0,
+            "description": "Preview shows the rounded cyan 'SAMPLE box'; counter reads 'Applied rules: 4 of 4'.",
+            "modality": "shown_on_screen",
+            "claim_ids": [
+              "c1"
+            ],
+            "confidence": 0.91
+          }
+        ],
+        "summary": "SAMPLE: CSS rules are typed and the live preview reflects all four."
+      }
+    },
+    "challenger": {
+      "ok": true,
+      "data": {
+        "per_claim": [
+          {
+            "claim_id": "c1",
+            "contradictions": [],
+            "unsupported": false,
+            "missing_visual_proof": [],
+            "uncertainty": "Basic properties only; layout/responsive work not shown."
+          }
+        ],
+        "overall_notes": "SAMPLE: CSS rules are typed and the live preview reflects all four."
+      }
+    },
+    "rubric": {
+      "ok": true,
+      "data": {
+        "source": "sample_fixture",
+        "per_claim": [
+          {
+            "claim_id": "c1",
+            "answer": "yes",
+            "probability": 0.84,
+            "confidence": 0.84
+          }
+        ],
+        "rubric": {
+          "problem_discovery": 1.0,
+          "technical_communication": 1.7,
+          "workflow_execution": 2.1
+        }
+      }
+    }
+  }
+}

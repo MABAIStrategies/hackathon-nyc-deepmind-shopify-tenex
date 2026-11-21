@@ -1,0 +1,106 @@
+{
+  "id": "demo6-contradicted",
+  "title": "State demo: claim contradicted on screen (SAMPLE)",
+  "video": "case3-partial-completion.mp4",
+  "benchmark": false,
+  "expected": {
+    "c1": "contradicted",
+    "c2": "insufficient_evidence"
+  },
+  "expected_source": "Engineering state demo on Delivery's case3 video (not a benchmark case)",
+  "claims": [
+    {
+      "id": "c1",
+      "text": "I submitted the client intake form."
+    },
+    {
+      "id": "c2",
+      "text": "I can complete a client intake form."
+    }
+  ],
+  "sample_notice": "HAND-AUTHORED SAMPLE fixture, written by Engineering from Delivery's labels.json (timestamps from labels). NOT model output. Not a live model run. Probabilities/confidences are illustrative placeholders, not measurements. Demonstrates the contradicted state: the claim conflicts with what the video shows.",
+  "transcript": "",
+  "stages": {
+    "extractor": {
+      "ok": true,
+      "data": {
+        "summary": "SAMPLE: 2 of 3 fields filled; status reads 'Draft, not submitted'; Submit never clicked.",
+        "observations": [
+          {
+            "t_start": 4.9,
+            "t_end": 11.4,
+            "description": "Types client name and job date.",
+            "modality": "shown_on_screen",
+            "claim_ids": [
+              "c2"
+            ],
+            "confidence": 0.87
+          },
+          {
+            "t_start": 11.4,
+            "t_end": 40.0,
+            "description": "Status reads 'Draft, not submitted' and '2 of 3 required fields complete'; Submit never clicked.",
+            "modality": "shown_on_screen",
+            "claim_ids": [
+              "c1",
+              "c2"
+            ],
+            "confidence": 0.9
+          }
+        ]
+      }
+    },
+    "challenger": {
+      "ok": true,
+      "data": {
+        "overall_notes": "SAMPLE",
+        "per_claim": [
+          {
+            "claim_id": "c1",
+            "contradictions": [
+              "From 0:11.4 to the end the form status reads 'Draft, not submitted'; Submit is never clicked."
+            ],
+            "unsupported": true,
+            "missing_visual_proof": [],
+            "uncertainty": ""
+          },
+          {
+            "claim_id": "c2",
+            "contradictions": [],
+            "unsupported": true,
+            "missing_visual_proof": [
+              "Hours never filled",
+              "No submit / saved confirmation"
+            ],
+            "uncertainty": "Partial progress only."
+          }
+        ]
+      }
+    },
+    "rubric": {
+      "ok": true,
+      "data": {
+        "source": "sample_fixture",
+        "per_claim": [
+          {
+            "claim_id": "c1",
+            "answer": "no",
+            "probability": 0.03,
+            "confidence": 0.97
+          },
+          {
+            "claim_id": "c2",
+            "answer": "no",
+            "probability": 0.2,
+            "confidence": 0.8
+          }
+        ],
+        "rubric": {
+          "problem_discovery": 0.7,
+          "technical_communication": 1.3,
+          "workflow_execution": 0.8
+        }
+      }
+    }
+  }
+}

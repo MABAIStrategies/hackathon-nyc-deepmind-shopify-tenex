@@ -1,0 +1,57 @@
+{
+  "id": "demo5-challenger-timeout",
+  "title": "Failure demo: Challenger timeout, never unlock (SAMPLE)",
+  "video": "case4-unseen-holdout.mp4",
+  "benchmark": false,
+  "expected": {
+    "c1": "insufficient_evidence"
+  },
+  "expected_source": "Engineering failure-mode demo (not a benchmark case)",
+  "claims": [
+    {
+      "id": "c1",
+      "text": "I can style a preview box with CSS."
+    }
+  ],
+  "sample_notice": "HAND-AUTHORED SAMPLE fixture, written by Engineering from Delivery's labels.json (timestamps from labels). NOT model output. Not a live model run. Probabilities/confidences are illustrative placeholders, not measurements. Simulates a Stage 2 timeout to show fail-closed behavior.",
+  "transcript": "",
+  "stages": {
+    "extractor": {
+      "ok": true,
+      "data": {
+        "observations": [
+          {
+            "t_start": 7.312,
+            "t_end": 25.17,
+            "description": "Types background #40ddf2, border-radius 24px, padding 32px, color #0c1018 in the CSS editor.",
+            "modality": "shown_on_screen",
+            "claim_ids": [
+              "c1"
+            ],
+            "confidence": 0.89
+          },
+          {
+            "t_start": 25.17,
+            "t_end": 40.0,
+            "description": "Preview shows the rounded cyan 'SAMPLE box'; counter reads 'Applied rules: 4 of 4'.",
+            "modality": "shown_on_screen",
+            "claim_ids": [
+              "c1"
+            ],
+            "confidence": 0.91
+          }
+        ],
+        "summary": "SAMPLE: CSS rules are typed and the live preview reflects all four."
+      }
+    },
+    "challenger": {
+      "ok": false,
+      "timedOut": true,
+      "error": "SAMPLE scenario: Stage exceeded 45000 ms timeout"
+    },
+    "rubric": {
+      "ok": false,
+      "error": "SAMPLE scenario: not run because Challenger did not return"
+    }
+  }
+}
