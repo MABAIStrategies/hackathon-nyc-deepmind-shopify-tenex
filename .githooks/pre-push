@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Abort the push if the secret scan finds anything. Enable with: npm run hooks
+exec bash "$(git rev-parse --show-toplevel)/scripts/secret-scan.sh"
