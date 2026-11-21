@@ -1,0 +1,11 @@
+node_modules/
+.env
+.env.*
+!.env.example
+dist/
+coverage/
+*.log
+data/cache.json
+data/uploads/
+data/provenance-live.json
+.DS_Store
