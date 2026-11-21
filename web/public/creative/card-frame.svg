@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600" width="400" height="600" role="img" aria-label="My Player card frame">
+ <defs><clipPath id="mpPhoto"><path d="M24 64H376V352L352 376H24Z"/></clipPath>
+  <linearGradient id="mpFade" x1="0" y1="0" x2="0" y2="1"><stop offset=".55" stop-color="#0c1018" stop-opacity="0"/><stop offset="1" stop-color="#0c1018" stop-opacity=".95"/></linearGradient>
+  <pattern id="mpGrid" width="16" height="16" patternUnits="userSpaceOnUse"><path d="M16 0H0V16" fill="none" stroke="#2a3342" stroke-width=".6"/></pattern></defs>
+ <path d="M24 0H400V576L376 600H0V24Z" fill="#0c1018"/>
+ <path d="M24 0H400V576L376 600H0V24Z" fill="url(#mpGrid)" opacity=".5"/>
+ <path d="M25.5 1.5H398.5V575.4L375.4 598.5H1.5V24.6Z" fill="none" stroke="#40ddf2" stroke-width="3"/>
+ <path d="M0 24L24 0H64L0 64Z" fill="#40ddf2"/>
+ <text x="40" y="44" font-family="'Geist Mono','JetBrains Mono',ui-monospace,monospace" font-size="11" letter-spacing="3" fill="#7d8796">PLAYER CARD</text>
+ <text x="376" y="44" text-anchor="end" font-family="'Geist Mono','JetBrains Mono',ui-monospace,monospace" font-size="11" letter-spacing="3" fill="#a08bff">PROOF-GATED</text>
+ <!-- PHOTO SLOT: replace rect with <image href=... clip-path="url(#mpPhoto)" preserveAspectRatio="xMidYMid slice"/> -->
+ <g clip-path="url(#mpPhoto)"><rect id="photo-slot" x="24" y="64" width="352" height="312" fill="#161c26"/>
+  <text x="200" y="215" text-anchor="middle" font-family="'Geist Mono','JetBrains Mono',ui-monospace,monospace" font-size="12" letter-spacing="3" fill="#7d8796">CONSENTED PHOTO</text>
+  <rect x="24" y="64" width="352" height="312" fill="url(#mpFade)"/></g>
+ <path d="M24 64H376V352L352 376H24Z" fill="none" stroke="#2a3342" stroke-width="1.5"/>
+ <rect x="24" y="64" width="4" height="312" fill="#a08bff"/>
+ <text id="name" x="40" y="352" font-family="'Big Shoulders','Big Shoulders Display','Archivo Narrow',Impact,sans-serif" font-weight="900" font-size="48" fill="#f2f6fb">PLAYER NAME</text>
+ <rect x="24" y="388" width="352" height="26" fill="#161c26"/>
+ <text id="role" x="36" y="406" font-family="'Geist Mono','JetBrains Mono',ui-monospace,monospace" font-size="12" letter-spacing="2.5" fill="#40ddf2">ROLE / TITLE</text>
+ <text x="364" y="406" text-anchor="end" font-family="'Geist Mono','JetBrains Mono',ui-monospace,monospace" font-size="10" letter-spacing="2" fill="#7d8796">3 CLAIMS</text>
+ <!-- NODE SLOTS: drop svg/nodes/node-<state>.svg at 72x72, centers x=88/200/312 y=478 -->
+ <g fill="none" stroke="#2a3342" stroke-width="1.5" stroke-dasharray="4 4">
+  <rect x="52" y="442" width="72" height="72"/><rect x="164" y="442" width="72" height="72"/><rect x="276" y="442" width="72" height="72"/></g>
+ <g font-family="'Geist Mono','JetBrains Mono',ui-monospace,monospace" font-size="10" letter-spacing="1.5" fill="#7d8796" text-anchor="middle">
+  <text x="88" y="534">SKILL 1</text><text x="200" y="534">SKILL 2</text><text x="312" y="534">SKILL 3</text></g>
+ <path d="M24 556H352" stroke="#2a3342" stroke-width="1.5"/>
+ <text x="24" y="578" font-family="'Geist Mono','JetBrains Mono',ui-monospace,monospace" font-size="10" letter-spacing="2" fill="#7d8796">EVIDENCE: TAP A NODE</text>
+ <text x="352" y="578" text-anchor="end" font-family="'Big Shoulders','Big Shoulders Display','Archivo Narrow',Impact,sans-serif" font-weight="800" font-size="16" letter-spacing="2" fill="#40ddf2">MY PLAYER</text></svg>

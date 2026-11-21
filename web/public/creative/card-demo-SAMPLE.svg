@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600" width="400" height="600" role="img" aria-label="My Player card frame">
+ <defs><clipPath id="mpPhoto"><path d="M24 64H376V352L352 376H24Z"/></clipPath>
+  <linearGradient id="mpFade" x1="0" y1="0" x2="0" y2="1"><stop offset=".55" stop-color="#0c1018" stop-opacity="0"/><stop offset="1" stop-color="#0c1018" stop-opacity=".95"/></linearGradient>
+  <pattern id="mpGrid" width="16" height="16" patternUnits="userSpaceOnUse"><path d="M16 0H0V16" fill="none" stroke="#2a3342" stroke-width=".6"/></pattern></defs>
+ <path d="M24 0H400V576L376 600H0V24Z" fill="#0c1018"/>
+ <path d="M24 0H400V576L376 600H0V24Z" fill="url(#mpGrid)" opacity=".5"/>
+ <path d="M25.5 1.5H398.5V575.4L375.4 598.5H1.5V24.6Z" fill="none" stroke="#40ddf2" stroke-width="3"/>
+ <path d="M0 24L24 0H64L0 64Z" fill="#40ddf2"/>
+ <text x="40" y="44" font-family="'Geist Mono','JetBrains Mono',ui-monospace,monospace" font-size="11" letter-spacing="3" fill="#7d8796">PLAYER CARD</text>
+ <text x="376" y="44" text-anchor="end" font-family="'Geist Mono','JetBrains Mono',ui-monospace,monospace" font-size="11" letter-spacing="3" fill="#a08bff">PROOF-GATED</text>
+ <!-- PHOTO SLOT: replace rect with <image href=... clip-path="url(#mpPhoto)" preserveAspectRatio="xMidYMid slice"/> -->
+ <g clip-path="url(#mpPhoto)"><rect id="photo-slot" x="24" y="64" width="352" height="312" fill="#161c26"/>
+  <text x="200" y="215" text-anchor="middle" font-family="'Geist Mono','JetBrains Mono',ui-monospace,monospace" font-size="12" letter-spacing="3" fill="#7d8796">PHOTO (SAMPLE)</text>
+  <rect x="24" y="64" width="352" height="312" fill="url(#mpFade)"/></g>
+ <path d="M24 64H376V352L352 376H24Z" fill="none" stroke="#2a3342" stroke-width="1.5"/>
+ <rect x="24" y="64" width="4" height="312" fill="#a08bff"/>
+ <text id="name" x="40" y="352" font-family="'Big Shoulders','Big Shoulders Display','Archivo Narrow',Impact,sans-serif" font-weight="900" font-size="48" fill="#f2f6fb">SAMPLE PLAYER</text>
+ <rect x="24" y="388" width="352" height="26" fill="#161c26"/>
+ <text id="role" x="36" y="406" font-family="'Geist Mono','JetBrains Mono',ui-monospace,monospace" font-size="12" letter-spacing="2.5" fill="#40ddf2">SAMPLE · RevOps lead</text>
+ <text x="364" y="406" text-anchor="end" font-family="'Geist Mono','JetBrains Mono',ui-monospace,monospace" font-size="10" letter-spacing="2" fill="#7d8796">3 CLAIMS</text>
+ <!-- NODE SLOTS: drop svg/nodes/node-<state>.svg at 72x72, centers x=88/200/312 y=478 -->
+ <g fill="none" stroke="#2a3342" stroke-width="1.5" stroke-dasharray="4 4">
+  <rect x="52" y="442" width="72" height="72"/><rect x="164" y="442" width="72" height="72"/><rect x="276" y="442" width="72" height="72"/></g>
+ <g font-family="'Geist Mono','JetBrains Mono',ui-monospace,monospace" font-size="10" letter-spacing="1.5" fill="#7d8796" text-anchor="middle">
+  <text x="88" y="534" fill="#40ddf2">SQL</text><text x="200" y="534" fill="#a08bff">PYTHON</text><text x="312" y="534">FORECAST</text></g>
+ <path d="M24 556H352" stroke="#2a3342" stroke-width="1.5"/>
+ <text x="24" y="578" font-family="'Geist Mono','JetBrains Mono',ui-monospace,monospace" font-size="10" letter-spacing="2" fill="#7d8796">EVIDENCE: TAP A NODE</text>
+ <text x="352" y="578" text-anchor="end" font-family="'Big Shoulders','Big Shoulders Display','Archivo Narrow',Impact,sans-serif" font-weight="800" font-size="16" letter-spacing="2" fill="#40ddf2">MY PLAYER</text><svg x="52" y="442" width="72" height="72" viewBox="0 0 96 96">
+  <polygon points="48.00,8.00 82.64,28.00 82.64,68.00 48.00,88.00 13.36,68.00 13.36,28.00" fill="#40ddf2" stroke="#40ddf2" stroke-width="2.5"/>
+  <polygon points="48.00,16.00 75.71,32.00 75.71,64.00 48.00,80.00 20.29,64.00 20.29,32.00" fill="none" stroke="#0c1018" stroke-width="1.5" opacity=".35"/>
+  <rect x="37" y="46" width="22" height="17" rx="2" fill="#0c1018"/><path d="M41 46v-5a7 7 0 0 1 13.4-2.8" fill="none" stroke="#0c1018" stroke-width="3.2" stroke-linecap="round"/>
+  <path d="M42 55l4 4 8-8" fill="none" stroke="#40ddf2" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><svg x="164" y="442" width="72" height="72" viewBox="0 0 96 96">
+  <polygon points="48.00,8.00 82.64,28.00 82.64,68.00 48.00,88.00 13.36,68.00 13.36,28.00" fill="#161c26" stroke="#a08bff" stroke-width="3"/>
+  <polygon points="48.00,16.00 75.71,32.00 75.71,64.00 48.00,80.00 20.29,64.00 20.29,32.00" fill="none" stroke="#a08bff" stroke-width="1.2" stroke-dasharray="3 4" opacity=".7"/>
+  <rect x="37" y="46" width="22" height="17" rx="2" fill="#a08bff"/><path d="M41 46v-5a7 7 0 0 1 14 0v5" fill="none" stroke="#a08bff" stroke-width="3.2" stroke-linecap="round"/>
+  <text x="48" y="60" text-anchor="middle" font-family="'Geist Mono','JetBrains Mono',ui-monospace,monospace" font-weight="800" font-size="13" fill="#161c26">?</text></svg><svg x="276" y="442" width="72" height="72" viewBox="0 0 96 96">
+  <polygon points="48.00,8.00 82.64,28.00 82.64,68.00 48.00,88.00 13.36,68.00 13.36,28.00" fill="#161c26" stroke="#2a3342" stroke-width="2.5"/>
+  <polygon class="mp-scan" points="48.00,8.00 82.64,28.00 82.64,68.00 48.00,88.00 13.36,68.00 13.36,28.00" fill="none" stroke="#40ddf2" stroke-width="3.5" stroke-dasharray="40 212" stroke-linecap="round">
+    <animate attributeName="stroke-dashoffset" from="0" to="-252" dur="1.4s" repeatCount="indefinite"/></polygon>
+  <g fill="#40ddf2"><circle cx="38" cy="55" r="3.4"><animate attributeName="opacity" values="1;.25;1" dur="1.2s" repeatCount="indefinite"/></circle>
+  <circle cx="48" cy="55" r="3.4"><animate attributeName="opacity" values="1;.25;1" dur="1.2s" begin=".2s" repeatCount="indefinite"/></circle>
+  <circle cx="58" cy="55" r="3.4"><animate attributeName="opacity" values="1;.25;1" dur="1.2s" begin=".4s" repeatCount="indefinite"/></circle></g>
+  <path d="M40 42h16" stroke="#40ddf2" stroke-width="3" stroke-linecap="round" opacity=".6"/></svg></svg>
