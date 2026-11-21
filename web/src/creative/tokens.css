@@ -1,0 +1,54 @@
+/* My Player visual system: drop-in CSS. Fonts are OFL (Google Fonts), bundled in ./fonts. No glassmorphism: flat fills, hard edges, no backdrop blur. */
+@font-face{font-family:"Big Shoulders";src:url("./fonts/BigShoulders-Variable.ttf") format("truetype");font-weight:100 900;font-display:swap}
+@font-face{font-family:"Geist Mono";src:url("./fonts/GeistMono-Variable.ttf") format("truetype");font-weight:100 900;font-display:swap}
+:root{
+  --mp-bg:#0c1018; --mp-panel:#161c26; --mp-line:#2a3342;
+  --mp-cyan:#40ddf2; --mp-violet:#a08bff; --mp-ink:#f2f6fb; --mp-mute:#7d8796;
+  --mp-alert:#ff6b81; /* only addition to brief palette: contradicted + API failure. Swap to var(--mp-violet) for strict 4-color */
+  --mp-display:"Big Shoulders","Archivo Narrow",Impact,sans-serif;
+  --mp-mono:"Geist Mono",ui-monospace,monospace;
+  --mp-chamfer:24px;
+}
+body{background:var(--mp-bg);color:var(--mp-ink);font-family:var(--mp-mono)}
+.mp-wordmark{font:900 clamp(40px,7vw,78px)/1 var(--mp-display);letter-spacing:.01em;text-transform:uppercase}
+.mp-wordmark b{color:var(--mp-cyan);font-weight:900}
+
+/* Card frame: chamfered top-left + bottom-right, cyan rule, faint grid */
+.mp-card{position:relative;width:min(400px,100%);aspect-ratio:2/3;padding:64px 24px 24px;background:
+  linear-gradient(var(--mp-line) .6px,transparent .6px) 0 0/16px 16px,
+  linear-gradient(90deg,var(--mp-line) .6px,transparent .6px) 0 0/16px 16px,var(--mp-bg);
+  clip-path:polygon(var(--mp-chamfer) 0,100% 0,100% calc(100% - var(--mp-chamfer)),calc(100% - var(--mp-chamfer)) 100%,0 100%,0 var(--mp-chamfer));
+  outline:3px solid var(--mp-cyan);outline-offset:-3px}
+.mp-card::before{content:"";position:absolute;inset:0 auto auto 0;width:64px;height:64px;background:var(--mp-cyan);clip-path:polygon(0 37.5%,37.5% 0,100% 0,0 100%)}
+.mp-card__photo{position:relative;aspect-ratio:352/312;background:var(--mp-panel) center/cover;border-left:4px solid var(--mp-violet);clip-path:polygon(0 0,100% 0,100% 92%,93% 100%,0 100%)}
+.mp-card__photo::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 55%,rgba(12,16,24,.95))}
+.mp-card__name{position:absolute;z-index:1;margin-top:-64px;padding-left:16px;font:900 48px/1 var(--mp-display);text-transform:uppercase}
+.mp-card__role{margin-top:12px;padding:6px 12px;background:var(--mp-panel);color:var(--mp-cyan);font-size:12px;letter-spacing:.2em;text-transform:uppercase}
+.mp-card__nodes{display:flex;justify-content:space-around;margin-top:28px}
+
+/* Skill nodes: use svg/nodes/node-<state>.svg, or set data-state on a wrapper for label color */
+.mp-node{display:grid;justify-items:center;gap:8px;background:none;border:0;cursor:pointer;color:var(--mp-mute);font:500 10px var(--mp-mono);letter-spacing:.15em;text-transform:uppercase}
+.mp-node img,.mp-node svg{width:72px;height:72px;transition:transform .25s ease,filter .25s ease}
+.mp-node:hover img,.mp-node:focus-visible img{transform:translateY(-3px)}
+.mp-node:focus-visible{outline:2px solid var(--mp-cyan);outline-offset:4px}
+.mp-node[data-state="supported"]{color:var(--mp-cyan)}
+.mp-node[data-state="supported"] img{filter:drop-shadow(0 0 12px rgba(64,221,242,.55))}
+.mp-node[data-state="insufficient_evidence"]{color:var(--mp-violet)}
+.mp-node[data-state="contradicted"]{color:var(--mp-alert)}
+.mp-node[data-state="evidence_pending"]{color:var(--mp-ink)}
+/* Unlock moment: add .mp-unlock when a node flips to supported */
+@keyframes mp-unlock{0%{transform:scale(.85) rotate(-30deg)}60%{transform:scale(1.12) rotate(4deg)}100%{transform:none}}
+.mp-unlock img{animation:mp-unlock .55s cubic-bezier(.2,.9,.3,1.3)}
+/* Stays-locked moment: short shake for insufficient/contradicted */
+@keyframes mp-deny{0%,100%{transform:none}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.mp-deny img{animation:mp-deny .3s ease 2}
+@media (prefers-reduced-motion:reduce){.mp-unlock img,.mp-deny img{animation:none}}
+
+/* Model badges: always show the model id that ACTUALLY ran and real latency */
+.mp-badge{display:grid;grid-template-columns:1fr auto;gap:2px 16px;padding:6px 12px 6px 16px;background:var(--mp-panel);border:1.5px solid var(--c,var(--mp-cyan));border-left-width:6px;font-family:var(--mp-mono);clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,0 100%)}
+.mp-badge__stage{font-size:10px;letter-spacing:.15em;color:var(--mp-mute);text-transform:uppercase}
+.mp-badge__status{font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--c,var(--mp-cyan));text-align:right}
+.mp-badge__model{font-size:14px;font-weight:700}
+.mp-badge__ms{font-size:12px;text-align:right}
+.mp-badge--ran{--c:var(--mp-cyan)} .mp-badge--substituted{--c:var(--mp-violet)}
+.mp-badge--fallback{--c:var(--mp-alert)} .mp-badge--sample{--c:var(--mp-mute)}
