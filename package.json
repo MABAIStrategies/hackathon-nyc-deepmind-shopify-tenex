@@ -1,0 +1,44 @@
+{
+  "name": "my-player",
+  "version": "0.1.0",
+  "private": true,
+  "description": "My Player: evidence-gated skill card. Claims unlock only when the video shows them.",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -k -n api,web -c cyan,magenta \"npm:dev:api\" \"npm:dev:web\"",
+    "dev:api": "tsx watch server/src/index.ts",
+    "dev:web": "vite",
+    "replay": "cross-env MY_PLAYER_MODE=replay concurrently -k -n api,web -c cyan,magenta \"tsx server/src/index.ts\" \"vite\"",
+    "start": "tsx server/src/index.ts",
+    "build": "vite build",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "smoke": "tsx scripts/smoke.ts",
+    "bench": "tsx bench/run-bench.ts",
+    "secret-scan": "bash scripts/secret-scan.sh",
+    "hooks": "git config core.hooksPath .githooks",
+    "build:static": "vite build && MY_PLAYER_MODE=replay tsx scripts/build-static-replay.ts"
+  },
+  "dependencies": {
+    "@google/genai": "^3.6.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "multer": "^1.4.5-lts.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/multer": "^1.4.12",
+    "@types/node": "^22.10.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.0",
+    "cross-env": "^7.0.3",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.3",
+    "vitest": "^2.1.8"
+  }
+}
