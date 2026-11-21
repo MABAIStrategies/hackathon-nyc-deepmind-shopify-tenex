@@ -1,0 +1,113 @@
+{
+  "id": "case2-unsupported-claim",
+  "title": "Signature moment: said aloud, never shown (SAMPLE)",
+  "video": "case2-unsupported-claim.mp4",
+  "benchmark": true,
+  "expected": {
+    "c1": "supported",
+    "c2": "insufficient_evidence"
+  },
+  "expected_source": "Delivery labels.json (ground truth)",
+  "claims": [
+    {
+      "id": "c1",
+      "text": "I can fill out a job entry form, end to end."
+    },
+    {
+      "id": "c2",
+      "text": "I also wrote the SQL query that powers this."
+    }
+  ],
+  "sample_notice": "HAND-AUTHORED SAMPLE fixture, written by Engineering from Delivery's labels.json (timestamps from labels). NOT model output. Not a live model run. Probabilities/confidences are illustrative placeholders, not measurements.",
+  "transcript": "This is a sample recording, not a real person or client. I can fill out a job entry form, end to end. I enter the client name, the job date, the hours, and the rate. Then I click submit. The saved confirmation is on the screen. I also wrote the SQL query that powers this.",
+  "stages": {
+    "extractor": {
+      "ok": true,
+      "data": {
+        "observations": [
+          {
+            "t_start": 7.785,
+            "t_end": 19.6,
+            "description": "Types client name, job date, hours and rate into the job entry form.",
+            "modality": "shown_on_screen",
+            "claim_ids": [
+              "c1"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "t_start": 19.6,
+            "t_end": 40.0,
+            "description": "Clicks Submit; confirmation 'Job J-1042 saved' shows the entered values.",
+            "modality": "shown_on_screen",
+            "claim_ids": [
+              "c1"
+            ],
+            "confidence": 0.94
+          },
+          {
+            "t_start": 26.0,
+            "t_end": 28.811,
+            "description": "Says 'I also wrote the SQL query that powers this.' Screen still shows the confirmation; no SQL, query or code in any frame.",
+            "modality": "only_said_aloud",
+            "claim_ids": [
+              "c2"
+            ],
+            "confidence": 0.96
+          }
+        ],
+        "summary": "SAMPLE: the form fill and save are shown end to end. The SQL claim is only spoken; no query or code ever appears."
+      }
+    },
+    "challenger": {
+      "ok": true,
+      "data": {
+        "per_claim": [
+          {
+            "claim_id": "c1",
+            "contradictions": [],
+            "unsupported": false,
+            "missing_visual_proof": [],
+            "uncertainty": "One form; edge cases (validation errors) not shown."
+          },
+          {
+            "claim_id": "c2",
+            "contradictions": [],
+            "unsupported": true,
+            "missing_visual_proof": [
+              "No SQL editor, query text, or code appears in any frame",
+              "No query run or result shown"
+            ],
+            "uncertainty": "The claim may be true, but this video does not show it. Not contradicted: nothing on screen shows the opposite."
+          }
+        ],
+        "overall_notes": "SAMPLE: the form fill and save are shown end to end. The SQL claim is only spoken; no query or code ever appears."
+      }
+    },
+    "rubric": {
+      "ok": true,
+      "data": {
+        "source": "sample_fixture",
+        "per_claim": [
+          {
+            "claim_id": "c1",
+            "answer": "yes",
+            "probability": 0.88,
+            "confidence": 0.88
+          },
+          {
+            "claim_id": "c2",
+            "answer": "no",
+            "probability": 0.06,
+            "confidence": 0.94
+          }
+        ],
+        "rubric": {
+          "problem_discovery": 1.0,
+          "technical_communication": 1.8,
+          "workflow_execution": 2.2
+        }
+      }
+    }
+  }
+}

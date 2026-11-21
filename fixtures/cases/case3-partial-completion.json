@@ -1,0 +1,95 @@
+{
+  "id": "case3-partial-completion",
+  "title": "Partial Completion (SAMPLE)",
+  "video": "case3-partial-completion.mp4",
+  "benchmark": true,
+  "expected": {
+    "c1": "insufficient_evidence"
+  },
+  "expected_source": "Delivery labels.json (ground truth)",
+  "claims": [
+    {
+      "id": "c1",
+      "text": "I can complete a client intake form."
+    }
+  ],
+  "sample_notice": "HAND-AUTHORED SAMPLE fixture, written by Engineering from Delivery's labels.json (timestamps from labels). NOT model output. Not a live model run. Probabilities/confidences are illustrative placeholders, not measurements.",
+  "transcript": "This is a sample recording, not a real person or client. I can complete a client intake form. I type the client name, and I type the job date. I stop there. I do not enter the hours, and I never click submit.",
+  "stages": {
+    "extractor": {
+      "ok": true,
+      "data": {
+        "observations": [
+          {
+            "t_start": 4.9,
+            "t_end": 6.9,
+            "description": "Types client name 'Cedar Hill SAMPLE'.",
+            "modality": "shown_on_screen",
+            "claim_ids": [
+              "c1"
+            ],
+            "confidence": 0.88
+          },
+          {
+            "t_start": 7.08,
+            "t_end": 11.4,
+            "description": "Types job date 2026-11-18.",
+            "modality": "shown_on_screen",
+            "claim_ids": [
+              "c1"
+            ],
+            "confidence": 0.86
+          },
+          {
+            "t_start": 11.4,
+            "t_end": 40.0,
+            "description": "Hours stays empty; status reads 'Draft, not submitted' and '2 of 3 required fields complete'. Cursor hovers near Submit but never clicks.",
+            "modality": "shown_on_screen",
+            "claim_ids": [
+              "c1"
+            ],
+            "confidence": 0.42
+          }
+        ],
+        "summary": "SAMPLE: the intake form is started (2 of 3 fields) but never completed or submitted."
+      }
+    },
+    "challenger": {
+      "ok": true,
+      "data": {
+        "per_claim": [
+          {
+            "claim_id": "c1",
+            "contradictions": [],
+            "unsupported": true,
+            "missing_visual_proof": [
+              "Hours field never filled",
+              "Submit never clicked; no saved confirmation"
+            ],
+            "uncertainty": "Partial progress is visible; completion is not."
+          }
+        ],
+        "overall_notes": "SAMPLE: the intake form is started (2 of 3 fields) but never completed or submitted."
+      }
+    },
+    "rubric": {
+      "ok": true,
+      "data": {
+        "source": "sample_fixture",
+        "per_claim": [
+          {
+            "claim_id": "c1",
+            "answer": "no",
+            "probability": 0.18,
+            "confidence": 0.82
+          }
+        ],
+        "rubric": {
+          "problem_discovery": 0.8,
+          "technical_communication": 1.4,
+          "workflow_execution": 0.9
+        }
+      }
+    }
+  }
+}
